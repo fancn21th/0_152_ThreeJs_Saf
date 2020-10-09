@@ -1,12 +1,12 @@
-let scene, camera, renderer;
+let scene, camera, renderer, box;
 const add = 0.01;
 
 const render = function () {
   const geometry = new THREE.BoxGeometry(1, 1, 1);
-  const material = new THREE.MeshBasicMaterial({
+  const material = new THREE.MeshStandardMaterial({
     color: new THREE.Color("skyblue"),
   });
-  const box = new THREE.Mesh(geometry, material);
+  box = new THREE.Mesh(geometry, material);
   scene.add(box);
 };
 
@@ -34,6 +34,11 @@ const init = function () {
 
   render();
 
+  // create light
+  const light = new THREE.DirectionalLight();
+  light.position.set(0, 1, 2);
+  scene.add(light);
+
   // create the renderer
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -58,8 +63,13 @@ const init = function () {
   }
 };
 
+const animate = function () {
+  box.rotation.y += add;
+};
+
 // main animation loop - calls 50-60 in a second.
-let mainLoop = function () {
+const mainLoop = function () {
+  animate();
   renderer.render(scene, camera);
   requestAnimationFrame(mainLoop);
 };
