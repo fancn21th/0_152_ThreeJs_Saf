@@ -1,9 +1,11 @@
 let scene, camera, renderer;
-let add = 0.01;
+const add = 0.01;
+
+const render = function () {};
 
 // set up the environment -
 // initialize scene, camera, objects and renderer
-let init = function () {
+const init = function () {
   // create the scene
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x00000);
@@ -22,6 +24,8 @@ let init = function () {
   // axes helper
   let axes = new THREE.AxesHelper(15);
   scene.add(axes);
+
+  render();
 
   // create the renderer
   renderer = new THREE.WebGLRenderer();
