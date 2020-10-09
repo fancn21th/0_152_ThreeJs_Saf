@@ -1,7 +1,14 @@
 let scene, camera, renderer;
 const add = 0.01;
 
-const render = function () {};
+const render = function () {
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+  const material = new THREE.MeshBasicMaterial({
+    color: new THREE.Color("skyblue"),
+  });
+  const box = new THREE.Mesh(geometry, material);
+  scene.add(box);
+};
 
 // set up the environment -
 // initialize scene, camera, objects and renderer
